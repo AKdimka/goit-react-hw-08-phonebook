@@ -35,10 +35,10 @@ export class App extends Component {
 
 		const normalizedContactName = contact.name.toLowerCase;
 
-		if (this.state.contacts.find(({ name }) => name.toLowerCase === normalizedContactName)) {
+		/* if (this.state.contacts.find(({ name }) => name.toLowerCase === normalizedContactName)) {
 			alert(`Contact ${contact.name} already exist`)
 			return true
-		}
+		} */
 
 		this.setState(({ contacts }) => (
 			{ contacts: [contact, ...contacts] }))
@@ -62,13 +62,18 @@ export class App extends Component {
 
 	render() {
 		const { contacts, filter } = this.state;
+		const { name, number } = this.state;
 		const normalizefFilter = filter.toLowerCase();
 		const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizefFilter));
 
 		return (
 			<MainContainer>
 				<Section title="Phonebook">
-					<Form onFormSubmit={this.submitForm} onFormChange={this.formChange} />
+					<Form
+						onFormSubmit={this.submitForm}
+						onFormChange={this.formChange}
+						name={name}
+						number={number} />
 				</Section>
 				<Section title="Contacts">
 					<Filter filterChange={this.changeFilter} value={filter} />
