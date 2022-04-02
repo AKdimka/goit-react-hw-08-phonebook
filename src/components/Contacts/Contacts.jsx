@@ -1,25 +1,21 @@
 import { Component } from "react";
+import { ContactsList, ListItem, DeleteBTN } from "./Contacts.styled";
+import propTypes from "prop-types";
 
 export class Contacts extends Component {
 	render() {
 		return (
-			<ul
-				className="contacts-list"
-				style={{
-					padding: "0px"
-				}}>
+			<ContactsList>
 				{this.props.contacts.map(({ name, id, number }) =>
-					<li
-						className="contacts-item"
-						key={id}
-						style={{
-							display: "flex",
-							flexDirection: "row",
-							justifyContent: "space-between"
-						}}>
+					<ListItem key={id}>
 						<span>{name}:</span> <span>{number}</span>
-					</li>)}
-			</ul>
+						<DeleteBTN onClick={() => this.props.onDeleteContact(id)}>X</DeleteBTN>
+					</ListItem>)}
+			</ContactsList>
 		)
 	}
+}
+
+Contacts.propTypes = {
+	contacts: propTypes.arrayOf(propTypes.object),
 }

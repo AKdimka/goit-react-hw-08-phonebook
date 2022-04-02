@@ -4,53 +4,77 @@ import { Form } from "./Form/Form"
 import { Contacts } from "./Contacts/Contacts";
 import { Filter } from "./Filter/Filter";
 import { nanoid } from "nanoid";
-//import { MainContainer } from "./App.styled";
+import { MainContainer } from "./App.styled";
+
+import initialContacts from "./contacts.json";
 
 export class App extends Component {
 	state = {
-		contacts: [
-			{ id: "id-1", name: "Firefighters", number: "101" },
-			{ id: "id-2", name: "Police", number: "102" },
-			{ id: "id-3", name: "Ambulance", number: "103" },
-			{ id: 'id-4', name: 'Rosie Simpson', number: '459-12-56' },
-			{ id: 'id-5', name: 'Hermione Kline', number: '443-89-12' },
-			{ id: 'id-6', name: 'Eden Clements', number: '645-17-79' },
-			{ id: 'id-7', name: 'Annie Copeland', number: '227-91-26' },],
+		contacts: initialContacts,
+		name: "",
+		number: "",
+		filter: "",
 	}
 
-	submitForm = (data) => {
+	formChange = e => {
+		const { name, value } = e.currentTarget;
+
+		this.setState({
+			[name]: value.trim(),
+		})
+	}
+
+	submitForm = e => {
+		e.preventDefault();
+
 		const contact = {
 			id: nanoid(),
-			...data,
+			name: this.state.name,
+			number: this.state.number,
+		}
+
+		const normalizedContactName = contact.name.toLowerCase;
+
+		if (this.state.contacts.find(({ name }) => name.toLowerCase === normalizedContactName)) {
+			alert(`Contact ${contact.name} already exist`)
+			return true
 		}
 
 		this.setState(({ contacts }) => (
 			{ contacts: [contact, ...contacts] }))
+
+		this.setState({ name: "", number: "" })
 	}
 
-	filtredContacts = (seach) => {
-		const filtred = this.state.contacts.filter(contact => contact.name == seach)
+	deleteContact = contactId => {
+		this.setState(prevState => ({
+			contacts: prevState.contacts.filter(contact => contact.id !== contactId)
+		}))
+	}
 
-		console.log(filtred);
+	changeFilter = e => {
+		const { name, value } = e.currentTarget;
+
+		this.setState({
+			[name]: value.trim(),
+		})
 	}
 
 	render() {
+		const { contacts, filter } = this.state;
+		const normalizefFilter = filter.toLowerCase();
+		const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizefFilter));
+
 		return (
-			<div style={{
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				fontSize: 20,
-				textTransform: 'uppercase',
-			}}>
+			<MainContainer>
 				<Section title="Phonebook">
-					<Form onFormSubmit={this.submitForm} />
+					<Form onFormSubmit={this.submitForm} onFormChange={this.formChange} />
 				</Section>
 				<Section title="Contacts">
-					<Filter filter={this.filtredContacts} />
-					<Contacts contacts={this.state.contacts} />
+					<Filter filterChange={this.changeFilter} value={filter} />
+					<Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
 				</Section>
-			</div >
+			</MainContainer>
 		);
 	}
 };

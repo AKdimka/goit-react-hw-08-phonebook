@@ -1,35 +1,24 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
+import { Label, Input } from "../Form/Form.styled"
 
 export class Filter extends Component {
-	state = {
-		filter: '',
-	}
-
-	filterChange = (e) => {
-		const { name, value } = e.currentTarget;
-
-		this.setState({
-			[name]: value,
-		})
-
-		setTimeout(() => console.log({ value }), 1)
-
-		this.props.filter(this.state.filter)
-	}
 	render() {
 		return (
-			<label style={{
-				display: 'flex',
-				flexDirection: 'column'
-			}}>
+			<Label>
 				Find contacts by name
-				<input
-					value={this.state.filter}
+				<Input
+					value={this.props.value}
 					type="text"
 					name="filter"
-					onChange={this.filterChange}
+					onChange={this.props.filterChange}
 				/>
-			</label>
+			</Label>
 		)
 	}
+}
+
+Filter.propTypes = {
+	filterChange: PropTypes.func.isRequired,
+	value: PropTypes.string.isRequired,
 }
