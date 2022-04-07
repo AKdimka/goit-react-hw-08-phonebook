@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { ContactsList, ListItem, DeleteBTN } from "./Contacts.styled";
-import propTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export class Contacts extends Component {
 	render() {
@@ -17,5 +17,6 @@ export class Contacts extends Component {
 }
 
 Contacts.propTypes = {
-	contacts: propTypes.arrayOf(propTypes.object),
+	contacts: PropTypes.arrayOf(PropTypes.object),
+	onDeleteContact: PropTypes.func.isRequired,
 }
