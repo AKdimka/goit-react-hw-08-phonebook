@@ -1,10 +1,10 @@
-import { SectionQ, Title } from "./Section.styled"
+import { Wrapper, Title } from "./Section.styled"
 
 export const Section = ({ title, children }) => {
 	return (
-		<SectionQ>
+		<Wrapper>
 			<Title>{title}</Title>
 			{children}
-		</SectionQ >
+		</Wrapper >
 	)
 }

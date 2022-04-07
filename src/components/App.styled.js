@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-size: 20;
+	font-size: 18px;
 	text-transform: uppercase;
 	color: #010101;
 	`;

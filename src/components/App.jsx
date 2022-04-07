@@ -33,12 +33,7 @@ export class App extends Component {
 			number: this.state.number,
 		}
 
-		const normalizedContactName = contact.name.toLowerCase;
-
-		/* if (this.state.contacts.find(({ name }) => name.toLowerCase === normalizedContactName)) {
-			alert(`Contact ${contact.name} already exist`)
-			return true
-		} */
+		if (this.chekExistContact(contact.name)) { return }
 
 		this.setState(({ contacts }) => (
 			{ contacts: [contact, ...contacts] }))
@@ -58,6 +53,13 @@ export class App extends Component {
 		this.setState({
 			[name]: value.trim(),
 		})
+	}
+
+	chekExistContact(newContact) {
+		if (this.state.contacts.find(({ name }) => name === newContact)) {
+			alert(`Contact ${newContact} already exist`)
+			return true
+		}
 	}
 
 	render() {
