@@ -11,42 +11,24 @@ import initialContacts from "./contacts.json";
 export class App extends Component {
 	state = {
 		contacts: initialContacts,
-		name: "",
-		number: "",
 		filter: "",
 	}
 
-	formChange = e => {
-		const { name, value } = e.currentTarget;
-
-		this.setState({
-			[name]: value.trim(),
-		})
-	}
-
-	submitForm = e => {
-		e.preventDefault();
-
+	submitForm = (data) => {
 		const contact = {
 			id: nanoid(),
-			name: this.state.name,
-			number: this.state.number,
+			...data,
 		}
-
 		if (this.chekExistContact(contact.name)) { return }
 
 		this.setState(({ contacts }) => (
 			{ contacts: [contact, ...contacts] }))
-
-		this.setState({ name: "", number: "" })
 	}
-
 	deleteContact = contactId => {
 		this.setState(prevState => ({
 			contacts: prevState.contacts.filter(contact => contact.id !== contactId)
 		}))
 	}
-
 	changeFilter = e => {
 		const { name, value } = e.currentTarget;
 
@@ -54,7 +36,6 @@ export class App extends Component {
 			[name]: value.trim(),
 		})
 	}
-
 	chekExistContact(newContact) {
 		if (this.state.contacts.find(({ name }) => name === newContact)) {
 			alert(`Contact ${newContact} already exist`)
@@ -73,7 +54,6 @@ export class App extends Component {
 				<Section title="Phonebook">
 					<Form
 						onFormSubmit={this.submitForm}
-						onFormChange={this.formChange}
 						name={name}
 						number={number} />
 				</Section>

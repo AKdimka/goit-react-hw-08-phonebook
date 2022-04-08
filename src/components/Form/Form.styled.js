@@ -7,6 +7,7 @@ export const Label = styled.label`
 `;
 
 export const Button = styled.button`
+cursor: pointer;
 	margin-top: 10px;
 	padding:10px;
   border:none;
