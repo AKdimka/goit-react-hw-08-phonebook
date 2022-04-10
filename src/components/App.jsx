@@ -45,7 +45,6 @@ export class App extends Component {
 
 	render() {
 		const { contacts, filter } = this.state;
-		const { name, number } = this.state;
 		const normalizefFilter = filter.toLowerCase();
 		const visibleContacts = contacts.filter(contact => contact.name.toLowerCase().includes(normalizefFilter));
 
@@ -53,9 +52,7 @@ export class App extends Component {
 			<MainContainer>
 				<Section title="Phonebook">
 					<Form
-						onFormSubmit={this.submitForm}
-						name={name}
-						number={number} />
+						onFormSubmit={this.submitForm} />
 				</Section>
 				<Section title="Contacts">
 					<Filter filterChange={this.changeFilter} value={filter} />
