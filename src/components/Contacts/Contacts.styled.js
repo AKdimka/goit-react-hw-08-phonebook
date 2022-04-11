@@ -12,7 +12,7 @@ justify-content: space-between;
 margin-top: 10px;
 `;
 
-export const DeleteBTN = styled.button`
+/* export const DeleteBTN = styled.button`
 position: absolute;
 left: -10%;
 top: 2px;
@@ -25,4 +25,4 @@ user-select: none;
 	transform: scale(1.2);
 	background-color: red;
 }
-`;
+`; */

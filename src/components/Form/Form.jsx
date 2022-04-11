@@ -3,6 +3,10 @@ import { Label, Button, Input } from "./Form.styled";
 import PropTypes from "prop-types";
 
 export class Form extends Component {
+	static propTypes = {
+		onFormSubmit: PropTypes.func.isRequired,
+	}
+
 	state = {
 		name: "",
 		number: "",
@@ -54,8 +58,4 @@ export class Form extends Component {
 				<Button type="submit">Add contact</Button>
 			</form>)
 	}
-}
-
-Form.propTypes = {
-	onFormSubmit: PropTypes.func.isRequired,
 }
