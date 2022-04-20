@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Label, Input } from "../Form/Form.styled"
 
-export function Filter({ filterChange, value }) {
+export function Filter({ setFilter, value }) {
 	return (
 		<Label>
 			Find contacts by name
@@ -9,13 +9,13 @@ export function Filter({ filterChange, value }) {
 				value={value}
 				type="text"
 				name="filter"
-				onChange={filterChange}
+				onChange={e => setFilter(e.target.value)}
 			/>
 		</Label>
 	)
 }
 
 Filter.propTypes = {
-	filterChange: PropTypes.func.isRequired,
+	setFilter: PropTypes.func.isRequired,
 	value: PropTypes.string.isRequired,
 }
