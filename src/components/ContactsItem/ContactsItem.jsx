@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { DeleteBTN } from "./ContactsItem.styled";
 
-export function ContactsItem({ id, name, number, deleteContact }) {
+export const ContactsItem = ({ id, name, number, deleteContact }) => {
 	return (
 		<>
 			<span>{name}:</span> <span>{number}</span>

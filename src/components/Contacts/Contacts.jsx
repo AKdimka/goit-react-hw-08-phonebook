@@ -2,7 +2,7 @@ import { ContactsList, ListItem } from "./Contacts.styled";
 import { ContactsItem } from "components/ContactsItem/ContactsItem";
 import PropTypes from "prop-types";
 
-export function Contacts({ contacts, onDeleteContact }) {
+export const Contacts = ({ contacts, onDeleteContact }) => {
 	return (
 		<ContactsList>
 			{contacts.map(({ id, name, number }) => (

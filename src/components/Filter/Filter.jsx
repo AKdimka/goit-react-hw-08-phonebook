@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Label, Input } from "../Form/Form.styled"
 
-export function Filter({ setFilter, value }) {
+export const Filter = ({ setFilter, value }) => {
 	return (
 		<Label>
 			Find contacts by name

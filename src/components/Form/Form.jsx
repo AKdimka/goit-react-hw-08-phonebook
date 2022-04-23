@@ -1,7 +1,6 @@
-import { Component } from "react";
+import { useState } from "react";
 import { Label, Button, Input } from "./Form.styled";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 export const Form = ({ onFormSubmit }) => {
 	const [name, setName] = useState('');
