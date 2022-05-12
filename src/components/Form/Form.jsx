@@ -6,7 +6,7 @@ import { addContact } from "redux/store";
 
 export const Form = () => {
 	const dispatch = useDispatch();
-	const contacts = useSelector(state => state.items);
+	const contacts = useSelector(state => state.contacts.items);
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
 
@@ -53,11 +53,10 @@ export const Form = () => {
 		const parsedContacts = JSON.parse(localContacts);
 
 		parsedContacts.map(contact => dispatch(addContact(contact)));
-	}, [])
+	}, [dispatch])
 
 	useEffect(() => {
 		localStorage.setItem('contacts', JSON.stringify(contacts))
-		console.log(localStorage);
 	}, [contacts])
 
 	return (
