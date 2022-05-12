@@ -1,5 +1,5 @@
 import { Label, Input } from "../Form/Form.styled"
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { changeFilter } from "redux/store";
 
