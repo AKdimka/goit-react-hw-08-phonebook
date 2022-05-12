@@ -29,11 +29,11 @@ const filterSlice = createSlice({
 	name: 'filter',
 	initialState: initialContacts,
 	reducer: {
-		changeFilter(state, action) {
+		changeFilter(state, { payload }) {
 			const visibleContacts = [];
-			const normalizefFilter = action.payload.toLowerCase();
+			const normalizefFilter = payload.toLowerCase();
 			console.log(normalizefFilter);
-			visibleContacts.push(state.filter(contact => contact.name.toLowerCase().includes(normalizefFilter)))
+			state.filter(contact => visibleContacts.push(contact.name.toLowerCase().includes(normalizefFilter)))
 			console.log(visibleContacts);
 			return visibleContacts;
 		}

@@ -47,16 +47,18 @@ export const Form = () => {
 			return true
 		}
 	}
-	/* 	useEffect(() => {
-			const contacts = localStorage.getItem('contacts');
-			const parsedContacts = JSON.parse(contacts);
-	
-			dispatch(addContact(parsedContacts));
-		}, [])
-	
-		useEffect(() => {
-			localStorage.setItem('contacts', JSON.stringify(contacts))
-		}, [contacts]) */
+
+	useEffect(() => {
+		const localContacts = localStorage.getItem('contacts');
+		const parsedContacts = JSON.parse(localContacts);
+
+		parsedContacts.map(contact => dispatch(addContact(contact)));
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('contacts', JSON.stringify(contacts))
+		console.log(localStorage);
+	}, [contacts])
 
 	return (
 		<>
