@@ -1,20 +1,20 @@
 import { ContactsList, ListItem } from "./Contacts.styled";
 import { ContactsItem } from "components/ContactsItem/ContactsItem";
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-export const Contacts = ({ contacts, onDeleteContact }) => {
+export const Contacts = () => {
+	const contacts = useSelector(state => state.items);
+
+	console.log(contacts);
 	return (
-		<ContactsList>
-			{contacts.map(({ id, name, number }) => (
-				<ListItem key={id}>
-					<ContactsItem id={id} name={name} number={number} deleteContact={onDeleteContact} />
-				</ListItem>
-			))}
-		</ContactsList>
+		<>
+			{contacts && <ContactsList>
+				{contacts.map(({ id, name, number }) => (
+					<ListItem key={id}>
+						<ContactsItem id={id} name={name} number={number} />
+					</ListItem>
+				))}
+			</ContactsList>}
+		</>
 	)
-}
-
-Contacts.propTypes = {
-	contacts: PropTypes.arrayOf(PropTypes.object),
-	onDeleteContact: PropTypes.func.isRequired,
 }
