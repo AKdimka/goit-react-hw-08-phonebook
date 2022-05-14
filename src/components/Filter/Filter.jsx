@@ -1,7 +1,7 @@
 import { Label, Input } from "../Form/Form.styled"
 import { useSelector, useDispatch } from "react-redux";
 
-import { filtredContacts } from "redux/store";
+import { changeFilter } from "redux/store";
 
 export const Filter = () => {
 	const value = useSelector(state => state.contacts.filter)
@@ -14,7 +14,7 @@ export const Filter = () => {
 				value={value}
 				type="text"
 				name="filter"
-				onChange={(e) => dispatch(filtredContacts(e.target.value))}
+				onChange={(e) => dispatch(changeFilter(e.target.value.toLowerCase()))}
 			/>
 		</Label>
 	)

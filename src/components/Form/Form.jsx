@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { nanoid } from "nanoid";
 import { Label, Button, Input } from "./Form.styled";
 import { useSelector, useDispatch } from "react-redux";
@@ -47,17 +47,6 @@ export const Form = () => {
 			return true
 		}
 	}
-
-	useEffect(() => {
-		const localContacts = localStorage.getItem('contacts');
-		const parsedContacts = JSON.parse(localContacts);
-
-		parsedContacts.map(contact => dispatch(addContact(contact)));
-	}, [dispatch])
-
-	useEffect(() => {
-		localStorage.setItem('contacts', JSON.stringify(contacts))
-	}, [contacts])
 
 	return (
 		<>
