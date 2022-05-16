@@ -1,6 +1,7 @@
 import { DeleteBTN } from "./ContactsItem.styled";
 import { useDispatch } from "react-redux";
-import { deliteContact } from "redux/store";
+import { deliteContact } from "redux/contactsSlice";
+import { PropTypes } from "prop-types";
 
 export const ContactsItem = ({ id, name, number }) => {
 	const dispatch = useDispatch();
@@ -12,3 +13,8 @@ export const ContactsItem = ({ id, name, number }) => {
 		</>
 	)
 }
+ContactsItem.propTypes = {
+	id: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	number: PropTypes.string.isRequired,
+};
