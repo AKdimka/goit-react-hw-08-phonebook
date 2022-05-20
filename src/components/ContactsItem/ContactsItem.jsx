@@ -1,15 +1,16 @@
 import { DeleteBTN } from "./ContactsItem.styled";
-import { useDispatch } from "react-redux";
-import { deliteContact } from "redux/contactsSlice";
 import { PropTypes } from "prop-types";
+import { useDeleteContactMutation } from "redux/contactsApi";
 
-export const ContactsItem = ({ id, name, number }) => {
-	const dispatch = useDispatch();
+export const ContactsItem = ({ id, img, name, number }) => {
+	const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
 	return (
 		<>
+			{/* {img && <img src={img} alt={name} />} */}
 			<span>{name}:</span> <span>{number}</span>
-			<DeleteBTN onClick={() => dispatch(deliteContact(id))}>X</DeleteBTN>
+			<DeleteBTN onClick={() => deleteContact(id)}>X</DeleteBTN>
+			{isDeleting && console.log(isDeleting)}
 		</>
 	)
 }

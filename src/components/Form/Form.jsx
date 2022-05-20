@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { Label, Button, Input } from "./Form.styled";
-import { useSelector, useDispatch } from "react-redux";
-import { addContact, getContacts } from "redux/contactsSlice";
+import { useCreteContactMutation, useGetContactsListQuery } from "redux/contactsApi";
 
 export const Form = () => {
-	const dispatch = useDispatch();
-	const contacts = useSelector(getContacts);
+	const { data: contacts } = useGetContactsListQuery();
+	const [createContact] = useCreteContactMutation();
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
 
@@ -36,13 +35,13 @@ export const Form = () => {
 			name: name,
 			number: number,
 		}
-		dispatch(addContact(contact));
+		createContact(contact);
 		setName('');
 		setNumber('');
 	}
 
 	const chekExistContact = (newContact) => {
-		if (contacts.find(({ name }) => name === newContact)) {
+		if (contacts?.find(({ name }) => name === newContact)) {
 			alert(`Contact ${newContact} already exist`)
 			return true
 		}
