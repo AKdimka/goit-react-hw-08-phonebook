@@ -3,7 +3,7 @@ import { PropTypes } from "prop-types";
 import { useDeleteContactMutation } from "redux/contactsApi";
 
 export const ContactsItem = ({ id, img, name, number }) => {
-	const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
+	const [deleteContact/* , { isLoading: isDeleting } */] = useDeleteContactMutation();
 	/* 	const normStr = number.split('-').join("");
 		console.log(normStr);
 		const hrefString = `tel:+${normStr}`; */
