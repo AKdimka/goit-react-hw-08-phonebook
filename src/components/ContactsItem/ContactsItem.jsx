@@ -1,4 +1,4 @@
-import { DeleteBTN, ContactImg, ContactContent, CallBtn } from "./ContactsItem.styled";
+import { DeleteBTN, ContactImg, ContactContent/* , CallBtn */ } from "./ContactsItem.styled";
 import { PropTypes } from "prop-types";
 import { useDeleteContactMutation } from "redux/contactsApi";
 
