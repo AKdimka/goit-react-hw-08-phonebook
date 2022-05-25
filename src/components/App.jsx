@@ -1,25 +1,22 @@
-import { Section } from "./Section/Section";
-import { Form } from "./Form/Form"
-import { Contacts } from "./Contacts/Contacts";
-import { Filter } from "./Filter/Filter";
 import { MainContainer } from "./App.styled";
+import { Routes, Route } from "react-router-dom";
+import Contacts from "pages/Contacts";
+import Registration from "pages/Registration";
+import Autorization from "pages/Autorization";
+import Layout from "./Layout/Layout";
 
 export function App() {
-	/*
-	const filtredContacts = () => {
-		const normalizefFilter = filter.toLowerCase();
-		return contacts.filter(contact => contact.name.toLowerCase().includes(normalizefFilter))
-	} */
-
 	return (
 		<MainContainer>
-			<Section title="Phonebook">
-				<Form />
-			</Section>
-			<Section title="Contacts">
-				<Filter />
-				<Contacts />
-			</Section>
+			<Routes>
+				<Route path="/" element={<Layout />}>
+					<Route path="contacts" element={<Contacts />} />
+					<Route path="registration" element={<Registration />} />
+					<Route path="autorization" element={<Autorization />} />
+
+					{/* NOT FOUND PAGE*/}
+				</Route>
+			</Routes>
 		</MainContainer>
 	);
 }
