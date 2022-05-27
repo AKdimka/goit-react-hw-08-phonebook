@@ -1,5 +1,5 @@
-import { List, ListItem } from "./ContactsList.styled";
-import { ContactsItem } from "components/ContactsList/ContactsItem";
+import { Contacts, ListItem } from "./ContactsList.styled";
+import { ContactsItem } from "components/ContactsItem/ContactsItem";
 import { useSelector } from "react-redux";
 import { getFilter } from "redux/contactsSlice";
 import { useGetContactsListQuery } from "redux/contactsApi";
@@ -15,7 +15,7 @@ export const ContactsList = () => {
 	return (
 		<>
 			{isFetching && <Loader />}
-			{isSuccess && !isFetching && <List>
+			{isSuccess && !isFetching && <Contacts>
 				{filtredContacts.map(({ id, avatar, name, phone }) => (
 					<ListItem key={id}>
 						<ContactsItem
@@ -25,7 +25,7 @@ export const ContactsList = () => {
 							number={phone} />
 					</ListItem>
 				))}
-			</List>}
+			</Contacts>}
 		</>
 	)
 }

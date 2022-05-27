@@ -1,8 +1,6 @@
-import { NavLink, Outlet } from "react-router-dom"
-import { Header, Navigation } from "./Layout.styled"
+import { NavLink } from "react-router-dom"
 
-
-export default function Layout() {
+export const RespAppbar = () => {
 	return (
 		<>
 			<Header>
@@ -16,13 +14,6 @@ export default function Layout() {
 				</div>
 				{/* UserMenu */}
 			</Header>
-			<main>
-				<Outlet />
-			</main>
-
-			<footer>
-				2022
-			</footer>
 		</>
 	)
 }
