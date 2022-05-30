@@ -11,9 +11,9 @@ export function App() {
 		<Routes >
 			<Route path="/" element={<Layout />}>
 
-				<Route path="contacts" element={<Contacts />} />
 				<Route path="registration" element={<RegistrationPage />} />
 				<Route path="autorization" element={<AutorizationPage />} />
+				<Route path="contacts" element={<Contacts />} />
 
 				{/* NOT FOUND PAGE*/}
 			</Route>

@@ -1,5 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+/* import { error } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
+ */
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -12,35 +16,35 @@ const token = {
 	},
 };
 
-const register = createAsyncThunk('auth/register', async user => {
+const register = createAsyncThunk('auth/register', async credentials => {
 	try {
-		console.log(1);
-		const { data } = await axios.post('/user/signup', user);
+		const { data } = await axios.post('/users/signup', credentials);
 		token.set(data.token);
 		return data;
 	} catch (error) {
-		console.log(2);
-		console.log(error);
+		error('Registration error');
+		//throw new Error(error);
 	}
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
 	try {
-		const { data } = await axios.post('/user/login', credentials);
+		const { data } = await axios.post('/users/login', credentials);
 		token.set(data.token);
 		return data;
 	} catch (error) {
-		console.log(error);
+		error('Login error');
+		//throw new Error(error);
 	}
 });
 
 const logOut = createAsyncThunk('auth/logout', async () => {
 	try {
-		const { data } = await axios.post('/user/logout');
+		await axios.post('/users/logout');
 		token.unset();
-		return data;
 	} catch (error) {
-		console.log(error);
+		error('error');
+		//throw new Error(error);
 	}
 });
 
@@ -59,7 +63,7 @@ const fetchCurrentUser = createAsyncThunk(
 			const { data } = await axios.get('/users/current');
 			return data;
 		} catch (error) {
-			console.log(error);
+			//throw new Error(error);
 		}
 	},
 );

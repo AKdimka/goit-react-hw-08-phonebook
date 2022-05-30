@@ -28,12 +28,14 @@ export default function AutorizationPage() {
 	}
 	const submitForm = (e) => {
 		e.preventDefault()
-		dispatch(authOperations.loginUser({ email, password }));
-		//navigate('/contacts');
+		dispatch(authOperations.logIn({ email, password }));
+		navigate('/contacts');
+		resetorm();
+	}
+	const resetorm = () => {
 		setEmail('');
 		setPassword('');
 	}
-
 	return (
 		<>
 			<h2>LogIn</h2>

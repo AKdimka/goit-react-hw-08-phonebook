@@ -1,18 +1,19 @@
-import { CastomCardActions, CallLink } from "./ContactsItem.styled";
+import { CastomCardActions, CastomCardMedia, CallLink } from "./ContactsItem.styled";
 import { PropTypes } from "prop-types";
-import { useDeleteContactMutation } from "redux/contactsApi";
-
-import { Card, CardContent, CardMedia, Button, Typography } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { contactsOperations } from '../../redux/contacts';
+import { Card, CardContent, Button, Typography } from '@mui/material';
 
 export const ContactsItem = ({ id, img, name, number }) => {
-	const [deleteContact/* , { isLoading: isDeleting } */] = useDeleteContactMutation();
+	const dispatch = useDispatch();
+	const onDelete = id => dispatch(contactsOperations.deleteContact(id));
 
-	const normStr = number.split('-').join("");
+	const normStr = number?.split('-').join("");
 
 	return (
 		<>
 			<Card sx={{ maxWidth: 345 }}>
-				<CardMedia
+				<CastomCardMedia
 					component="img"
 					alt={`${name} photo`}
 					height="140"
@@ -27,7 +28,7 @@ export const ContactsItem = ({ id, img, name, number }) => {
 					</Typography>
 				</CardContent>
 				<CastomCardActions>
-					<Button onClick={() => deleteContact(id)} variant="outlined" color="error">
+					<Button onClick={() => onDelete(id)} variant="outlined" color="error">
 						Delete
 					</Button>
 

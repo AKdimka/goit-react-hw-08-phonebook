@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { nanoid } from "nanoid";
+//import { nanoid } from "nanoid";
 import { Label, Button, Input } from "./Form.styled";
-import { useCreateContactMutation, useGetContactsQuery } from "redux/contactsApi";
+import { useDispatch, useSelector } from "react-redux";
+import { contactsSelectors, contactsOperations } from "redux/contacts";
 
 export const Form = () => {
-	const { data: contacts } = useGetContactsQuery();
-	const [createContact] = useCreateContactMutation();
+	const dispatch = useDispatch();
+	const contacts = useSelector(contactsSelectors.getContacts);
+	const createContact = contact => {
+		console.log(contact);
+		dispatch(contactsOperations.addContact(contact));
+	}
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
 
@@ -31,13 +36,12 @@ export const Form = () => {
 
 		if (chekExistContact(name)) { return }
 		const contact = {
-			id: nanoid(),
+			//id: nanoid(),
 			name: name,
 			number: number,
 		}
 		createContact(contact);
-		setName('');
-		setNumber('');
+		resetForm();
 	}
 
 	const chekExistContact = (newContact) => {
@@ -47,6 +51,10 @@ export const Form = () => {
 		}
 	}
 
+	const resetForm = () => {
+		setName('');
+		setNumber('');
+	}
 	return (
 		<>
 			<form onSubmit={onSubmitClick} >

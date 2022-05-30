@@ -1,21 +1,11 @@
-import { NavLink, Outlet } from "react-router-dom"
-import { Header, Navigation } from "./Layout.styled"
-
+import RespAppbar from "components/Appbar/Appbar"
+import { Outlet } from "react-router-dom"
 
 export default function Layout() {
 	return (
 		<>
-			<Header>
-				<Navigation>
-					<NavLink to='/contacts'>Contacts</NavLink>
-				</Navigation>
+			<RespAppbar />
 
-				<div>{/* AuthNav */}
-					<NavLink to='/registration'>Registration</NavLink>
-					<NavLink to='/autorization'>LogIn</NavLink>
-				</div>
-				{/* UserMenu */}
-			</Header>
 			<main>
 				<Outlet />
 			</main>
