@@ -2,13 +2,11 @@ import { Contacts, ListItem } from "./ContactsList.styled";
 import { ContactsItem } from "components/ContactsItem/ContactsItem";
 import { useSelector } from "react-redux";
 import { getFilter } from "redux/contactsSlice";
-import { useGetContactsListQuery } from "redux/contactsApi";
+import { useGetContactsQuery } from "redux/contactsApi";
 import { Loader } from "components/Loader/Loader";
 
 export const ContactsList = () => {
-	const { data: contacts, isFetching, isSuccess } = useGetContactsListQuery(null, {
-		refetchOnFocus: true
-	});
+	const { data: contacts, isFetching, isSuccess } = useGetContactsQuery();
 	const filterValue = useSelector(getFilter);
 	const filtredContacts = contacts?.filter(contact => contact.name.toLowerCase().includes(filterValue))
 

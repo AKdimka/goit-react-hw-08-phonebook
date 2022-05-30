@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { Label, Button, Input } from "./Form.styled";
-import { useCreteContactMutation, useGetContactsListQuery } from "redux/contactsApi";
+import { useCreateContactMutation, useGetContactsQuery } from "redux/contactsApi";
 
 export const Form = () => {
-	const { data: contacts } = useGetContactsListQuery();
-	const [createContact] = useCreteContactMutation();
+	const { data: contacts } = useGetContactsQuery();
+	const [createContact] = useCreateContactMutation();
 	const [name, setName] = useState('');
 	const [number, setNumber] = useState('');
 

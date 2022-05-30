@@ -12,17 +12,19 @@ const token = {
 	},
 };
 
-export const register = createAsyncThunk('auth/register', async credentials => {
+const register = createAsyncThunk('auth/register', async user => {
 	try {
-		const { data } = await axios.post('/user/signup', credentials);
+		console.log(1);
+		const { data } = await axios.post('/user/signup', user);
 		token.set(data.token);
 		return data;
 	} catch (error) {
+		console.log(2);
 		console.log(error);
 	}
 });
 
-export const logIn = createAsyncThunk('auth/login', async credentials => {
+const logIn = createAsyncThunk('auth/login', async credentials => {
 	try {
 		const { data } = await axios.post('/user/login', credentials);
 		token.set(data.token);
@@ -32,7 +34,7 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
 	}
 });
 
-export const logOut = createAsyncThunk('auth/logout', async () => {
+const logOut = createAsyncThunk('auth/logout', async () => {
 	try {
 		const { data } = await axios.post('/user/logout');
 		token.unset();
@@ -62,11 +64,11 @@ const fetchCurrentUser = createAsyncThunk(
 	},
 );
 
-const operations = {
+const authOperations = {
 	register,
 	logOut,
 	logIn,
 	fetchCurrentUser,
 };
 
-export default operations;
+export default authOperations;

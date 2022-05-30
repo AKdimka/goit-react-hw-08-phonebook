@@ -1,17 +1,17 @@
 import { Label, Input } from "../Form/Form.styled"
-import { useSelector, useDispatch } from "react-redux";
+import { /* useSelector, */ useDispatch } from "react-redux";
 
-import { changeFilter, getFilter } from "redux/contactsSlice";
+import { changeFilter/* , getFilter */ } from "redux/contactsSlice";
 
 export const Filter = () => {
-	const value = useSelector(getFilter);
+	//const value = useSelector(getFilter);
 	const dispatch = useDispatch();
 
 	return (
 		<Label>
 			Find contacts by name
 			<Input
-				value={value}
+				/* value={value} */
 				type="text"
 				name="filter"
 				onChange={(e) => dispatch(changeFilter(e.target.value.toLowerCase()))}

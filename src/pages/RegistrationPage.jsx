@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import authOperations from '../redux/auth/auth-operations';
 import { TextField, ButtonGroup, Button } from '@mui/material';
 
 export default function RegistrationPage() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
@@ -28,12 +30,13 @@ export default function RegistrationPage() {
 		}
 	}
 
-	const handleSubmit = e => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(authOperations.register({ name, email, password }))
-		setName('');
+		dispatch(authOperations.register({ name, email, password }));
+		//navigate('/contacts');
+		/* setName('');
 		setEmail('');
-		setPassword('');
+		setPassword(''); */
 	}
 
 	return (
