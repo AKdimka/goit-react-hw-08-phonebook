@@ -1,12 +1,11 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-//import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations';
 import { TextField, ButtonGroup, Button } from '@mui/material';
+import { Section } from 'components/Section/Section';
 
 export default function RegistrationPage() {
 	const dispatch = useDispatch();
-	//const navigate = useNavigate();
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
@@ -33,7 +32,6 @@ export default function RegistrationPage() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		dispatch(authOperations.register({ name, email, password }));
-		//navigate('/contacts');
 		resetForm();
 	}
 	const resetForm = () => {
@@ -42,8 +40,7 @@ export default function RegistrationPage() {
 		setName('');
 	}
 	return (
-		<>
-			<h2>Register</h2>
+		<Section title='Register'>
 			<form
 				onSubmit={handleSubmit}
 				style={{ display: 'flex', flexDirection: 'column' }}>
@@ -82,8 +79,7 @@ export default function RegistrationPage() {
 						Reset Form
 					</Button>
 				</ButtonGroup>
-
 			</form>
-		</>
+		</Section>
 	)
 }

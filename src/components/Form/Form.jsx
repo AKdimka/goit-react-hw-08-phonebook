@@ -1,5 +1,4 @@
 import { useState } from "react";
-//import { nanoid } from "nanoid";
 import { Label, Button, Input } from "./Form.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { contactsSelectors, contactsOperations } from "redux/contacts";
@@ -36,7 +35,6 @@ export const Form = () => {
 
 		if (chekExistContact(name)) { return }
 		const contact = {
-			//id: nanoid(),
 			name: name,
 			number: number,
 		}

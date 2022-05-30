@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink } from "react-router-dom"
+import { CustomNavLink } from './Appbar.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors } from 'redux/auth';
 import {
@@ -14,6 +14,7 @@ import {
 	Button,
 	Tooltip,
 	MenuItem,
+	ButtonGroup,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
@@ -92,13 +93,13 @@ const RespAppbar = () => {
 
 							<MenuItem onClick={handleCloseNavMenu}>
 								<Typography textAlign="center">
-									<NavLink to='/'>Home</NavLink>
+									<CustomNavLink to='/'>Home</CustomNavLink>
 								</Typography>
 							</MenuItem>
 
 							<MenuItem onClick={handleCloseNavMenu}>
 								<Typography textAlign="center">
-									<NavLink to='/contacts'>Contacts</NavLink>
+									<CustomNavLink to='/contacts'>Contacts</CustomNavLink>
 								</Typography>
 							</MenuItem>
 						</Menu>
@@ -128,14 +129,14 @@ const RespAppbar = () => {
 							onClick={handleCloseNavMenu}
 							sx={{ my: 2, color: 'white', display: 'block' }}
 						>
-							<NavLink to='/'>Home</NavLink>
+							<CustomNavLink to='/'>Home</CustomNavLink>
 						</Button>
 
 						<Button
 							onClick={handleCloseNavMenu}
 							sx={{ my: 2, color: 'white', display: 'block' }}
 						>
-							<NavLink to='/contacts'>Contacts</NavLink>
+							<CustomNavLink to='/contacts'>Contacts</CustomNavLink>
 						</Button>
 					</Box>
 
@@ -171,13 +172,21 @@ const RespAppbar = () => {
 							</>
 							:
 							<>
-								<Typography textAlign="center">
+								<ButtonGroup disableElevation variant="contained">
+									<Button>
+										<CustomNavLink to='/registration'>SignUp</CustomNavLink>
+									</Button>
+									<Button>
+										<CustomNavLink to='/autorization'>LogIn</CustomNavLink>
+									</Button>
+								</ButtonGroup>
+								{/* 	<Typography textAlign="center">
 									<NavLink to='/registration'>Registration</NavLink>
 								</Typography>
 
 								<Typography textAlign="center">
 									<NavLink to='/autorization'>LogIn</NavLink>
-								</Typography>
+								</Typography> */}
 							</>}
 					</Box>
 				</Toolbar>

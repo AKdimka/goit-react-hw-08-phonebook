@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-//import { useNavigate } from "react-router-dom";
 import authOperations from '../redux/auth/auth-operations';
 import { TextField, Button } from '@mui/material';
+import { Section } from "components/Section/Section";
 
 export default function AutorizationPage() {
 	const dispatch = useDispatch();
-	//const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -29,7 +28,6 @@ export default function AutorizationPage() {
 	const submitForm = (e) => {
 		e.preventDefault()
 		dispatch(authOperations.logIn({ email, password }));
-		//navigate('/contacts');
 		resetForm();
 	}
 	const resetForm = () => {
@@ -37,8 +35,7 @@ export default function AutorizationPage() {
 		setPassword('');
 	}
 	return (
-		<>
-			<h2>LogIn</h2>
+		<Section title='LogIn'>
 			<form onSubmit={submitForm}
 				style={{ display: 'flex', flexDirection: 'column' }}>
 
@@ -64,6 +61,6 @@ export default function AutorizationPage() {
 					LogIn
 				</Button>
 			</form>
-		</>
+		</Section>
 	)
 }
