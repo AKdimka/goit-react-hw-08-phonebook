@@ -1,5 +1,5 @@
 //import { MainContainer } from "./App.styled";
-import { useEffect, lazy } from 'react';
+import { useEffect/* , lazy */ } from 'react';
 import { Switch } from "react-router-dom";
 import Contacts from "pages/ContactsPage";
 import RegistrationPage from "pages/RegistrationPage";
@@ -14,6 +14,7 @@ import RespAppbar from './Appbar/Appbar';
 export function App() {
 	const dispatch = useDispatch();
 	const isFetchingCurrentUser = useSelector(authSelectors.fetchCurrent);
+	console.log(isFetchingCurrentUser);
 
 	useEffect(() => {
 		dispatch(authOperations.fetchCurrentUser());
@@ -22,8 +23,8 @@ export function App() {
 		//<MainContainer>
 		<>
 			<RespAppbar />
-			<Switch >
 
+			{<Switch >
 				<PublicRoutes path="/" exact redirectTo="/contacts" restricted>
 					<HomePage />
 				</PublicRoutes>
@@ -41,7 +42,7 @@ export function App() {
 				</PrivateRoutes>
 
 				{/* NOT FOUND PAGE*/}
-			</Switch >
+			</Switch >}
 		</>
 		//	</MainContainer>
 	);
