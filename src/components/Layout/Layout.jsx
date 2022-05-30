@@ -1,14 +1,14 @@
 import RespAppbar from "components/Appbar/Appbar"
-import { Outlet } from "react-router-dom"
+//import { Outlet } from "react-router-dom"
 
 export default function Layout() {
 	return (
 		<>
 			<RespAppbar />
 
-			<main>
+			{/* <main>
 				<Outlet />
-			</main>
+			</main> */}
 
 			<footer>
 				2022

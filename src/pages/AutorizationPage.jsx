@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import authOperations from '../redux/auth/auth-operations';
 import { TextField, Button } from '@mui/material';
 
 export default function AutorizationPage() {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+	//const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -29,10 +29,10 @@ export default function AutorizationPage() {
 	const submitForm = (e) => {
 		e.preventDefault()
 		dispatch(authOperations.logIn({ email, password }));
-		navigate('/contacts');
-		resetorm();
+		//navigate('/contacts');
+		resetForm();
 	}
-	const resetorm = () => {
+	const resetForm = () => {
 		setEmail('');
 		setPassword('');
 	}
