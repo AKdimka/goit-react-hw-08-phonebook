@@ -23,23 +23,21 @@ export function App() {
 			<RespAppbar />
 			<MainContainer>
 				<Switch >
-					<PublicRoutes path="/" exact redirectTo="/contacts" restricted>
+					<PublicRoutes exact path="/">
 						<HomePage />
 					</PublicRoutes>
 
-					<PublicRoutes path="/registration" redirectTo="/contacts" restricted>
+					<PublicRoutes exact path="/registration" restricted>
 						<RegistrationPage />
 					</PublicRoutes>
 
-					<PublicRoutes path="/autorization" redirectTo="/contacts" restricted>
+					<PublicRoutes exact path="/autorization" redirectTo="/contacts" restricted>
 						<AutorizationPage />
 					</PublicRoutes>
 
-					<PrivateRoutes path="/contacts" redirectTo="/login">
+					<PrivateRoutes exact path="/contacts" redirectTo="/login">
 						<Contacts />
 					</PrivateRoutes>
-
-					{/* NOT FOUND PAGE*/}
 				</Switch >
 			</MainContainer>
 		</>

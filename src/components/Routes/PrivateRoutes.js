@@ -8,6 +8,7 @@ export default function PrivateRoutes({
 	...routeProps
 }) {
 	const isLoggedIn = useSelector(authSelectors.getLoggedIn);
+
 	return (
 		<Route {...routeProps}>
 			{isLoggedIn ? children : <Redirect to={redirectTo} />}
